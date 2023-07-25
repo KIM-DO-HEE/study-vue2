@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // 인스턴스를 생성하는 이유 : Vue에서  API 속성 갖다쓰거나 재사용하기 위해
+        var vm = new Vue({
+            el : '#app', // app 태그를 찾아 인스턴스를 붙이겠다 => vue의 기능과 속성들이 유효해진다
+            data : {
+                message : 'hi'
+            }
+        });
+    </script>
+
+</body>
+</html>

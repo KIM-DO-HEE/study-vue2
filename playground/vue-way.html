@@ -15,25 +15,36 @@
 
         var viewModel = {};
 
+//      즉시 실행 함수
+        (function(){    
+            // Reactivy(반응성)
+            // 객체 동작을 재정의
+            // Object.defineProperty(대상 객체, 객체의 속성, {
+            // 정의할 내용 
+            // })
 
-        // Reactivy(반응성)
-        // 객체 동작을 재정의
-        // Object.defineProperty(대상 객체, 객체의 속성, {
-        // 정의할 내용 
-        // })
-        Object.defineProperty(viewModel, 'str', {
-            // 속성의 접근했을 때의 동작 정의
-            get : function(){
-                console.log('접근')
-            },
-            // 속성의 값을 할당했을 때 동작 정의
-            set : function(newValue){
-                console.log('할당', newValue);
-                div.innerHTML = newValue
+            // 데이터의 변화를 라이브러리에서 감지해서 자동으로 알아서 화면을 그려주는 것 = 데이터바인딩
+            function init() {
+                Object.defineProperty(viewModel, 'str', {
+                    // 속성의 접근했을 때의 동작 정의
+                    get: function () {
+                        console.log('접근')
+                    },
+                    // 속성의 값을 할당했을 때 동작 정의
+                    set: function (newValue) {
+                        console.log('할당', newValue);
+                        render(newValue)
+                    }
+                })
             }
-        })
 
-        // 데이터의 변화를 라이브러리에서 감지해서 자동으로 알아서 화면을 그려주는 것 = 데이터바인딩
+            function render(value) {
+                div.innerHTML = value
+            }
+            
+            init();
+        })()
+
     </script>
 </body>
 </html>

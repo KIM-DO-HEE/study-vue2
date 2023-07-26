@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 이벤트가 많을 때 어떻게 처리하지? -->
+        <app-header v-on:pass = increaseNum></app-header>
+        <app-content v-bind:number = num></app-content>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+
+        var appHeader = {
+            template : '<button v-on:click="passEvent">Click me</button>',
+            methods : {
+                passEvent : function(){
+                    this.$emit('pass')
+                }
+            }
+        }
+
+        var appContent = {
+            template : '<div>{{ number }}</div>',
+            props : ['number']   
+        }
+
+        var vm = new Vue({
+            el : '#app',
+            components : {
+                'app-header' : appHeader,
+                'app-content' : appContent
+            },
+            data : {
+                num : 0
+            },
+            methods : {
+                increaseNum : function (){
+                    this.num++
+                }
+            }
+        })
+    </script>
+</body>
+</html>

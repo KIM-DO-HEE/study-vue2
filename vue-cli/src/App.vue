@@ -8,7 +8,7 @@
     <!-- <hello-world></hello-world>  -->
     <div>
       <!-- {{ str }} -->
-      <app-header v-bind:propsdata="str"></app-header>
+      <app-header v-bind:propsdata="str" v-on:renew = "renewStr"></app-header>
     </div>
     
   </div>
@@ -27,6 +27,11 @@ export default { // new vue({})
   data : function(){
     return {
       str : 'Header(props)'
+    }
+  },
+  methods : {
+    renewStr : function(){
+      this.str = 'hi'
     }
   }
 }

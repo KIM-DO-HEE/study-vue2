@@ -8,7 +8,7 @@
     <!-- <hello-world></hello-world>  -->
     <div>
       <!-- {{ str }} -->
-      <app-header></app-header>
+      <app-header v-bind:propsdata="str"></app-header>
     </div>
     
   </div>
@@ -26,7 +26,7 @@ export default { // new vue({})
   },
   data : function(){
     return {
-      str : 'Header'
+      str : 'Header(props)'
     }
   }
 }

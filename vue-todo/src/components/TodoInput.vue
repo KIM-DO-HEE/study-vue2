@@ -16,12 +16,9 @@ export default {
   },
   methods : {
     addTodo : function(){
+      console.log('데이터 ' +  this.newTodoItem)
       if (this.newTodoItem !== ''){
-        var obj = {completed : false, item : this.newTodoItem}
-        console.log(this.newTodoItem)
-        // 저장하는 로직
-        // localStorage.setItem(this.newTodoItem, obj)
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj))
+        this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput()
       }
     },

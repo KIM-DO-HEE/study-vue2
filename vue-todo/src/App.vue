@@ -16,35 +16,36 @@ import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
 export default {
-  created: function(){
+  created(){
     if(localStorage.length > 0 ){
-      for ( var i = 0; i < localStorage.length; i ++){
+      for ( let i = 0; i < localStorage.length; i ++){
         console.log(JSON.parse(localStorage.getItem(localStorage.key(i))))
         this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
       }
     }
   },
-  data : function(){
+  data(){
     return {
       todoItems : []
     }
   },
   methods : {
-     addOneItem : function(todoItem){
-      var obj = {completed : false, item : todoItem}
+    // ES6문법 - 향상된 객체 리터럴 문법
+     addOneItem(todoItem){
+      const obj = {completed : false, item : todoItem}
       console.log(todoItem)
       // 저장하는 로직
       // localStorage.setItem(this.newTodoItem, obj)
       localStorage.setItem(todoItem, JSON.stringify(obj))
       this.todoItems.push(obj)
     },
-    removeOneItem : function(todoItem, index){
+    removeOneItem(todoItem, index){
       console.log('삭제 데이터' + todoItem)
       localStorage.removeItem(todoItem.item);
       console.log('아이템' + todoItem.item)
       this.todoItems.splice(index, 1);
     },
-    toggleOneItem : function(todoItem, index){
+    toggleOneItem(todoItem, index){
       console.log(todoItem)
       // todoItem.completed = !todoItem.completed;
       this.todoItems[index].completed = !this.todoItems[index].completed
@@ -52,7 +53,7 @@ export default {
       localStorage.removeItem(todoItem.item)
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
     },
-    clearAllItem : function(){
+    clearAllItem(){
       localStorage.clear()
       this.todoItems = []
     }

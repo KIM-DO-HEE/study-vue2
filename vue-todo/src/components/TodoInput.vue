@@ -5,7 +5,7 @@
       <i class="fas fa-plus addBtn" aria-hidden="true"></i>
     </span>
 
-    <Modal v-if="showModal" @close="showModal = false">
+    <AlertModal v-if="showModal" @close="showModal = false">
 
       <h3 slot="header">
         경고
@@ -13,12 +13,12 @@
       </h3>
       <div slot="body">내용을 입력하세요</div>
       <div slot="footer">copyright</div>
-    </Modal>
+    </AlertModal>
   </div>
 </template>
 
 <script>
-import Modal from './common/Modal.vue'
+import AlertModal from './common/AlertModal.vue'
 
 export default {
   data() {
@@ -31,7 +31,9 @@ export default {
     addTodo(){
       console.log('데이터 ' +  this.newTodoItem)
       if (this.newTodoItem !== ''){
-        this.$emit('addTodoItem', this.newTodoItem)
+        // this.$emit('addTodoItem', this.newTodoItem)
+        const text = this.newTodoItem.trim();
+        this.$store.commit('addOneItem', text)
         this.clearInput()
       }else{
         console.log('경고')
@@ -43,7 +45,7 @@ export default {
     }
   },
   components : {
-    Modal : Modal
+    AlertModal
   }
 }
 </script>

@@ -1,7 +1,9 @@
 <template>
   <div id="app">
       <TodoHeader></TodoHeader>
-      <TodoInput v-on:addTodoItem = "addOneItem"></TodoInput>
+      <!-- event 발생하고 받는 부분은 store와 TodoInput과 연관있다 -->
+      <!-- <TodoInput v-on:addTodoItem = "addOneItem"></TodoInput> -->
+      <TodoInput></TodoInput>
       <TodoList v-bind:propsdata = "todoItems"
         v-on:removeItem = "removeOneItem"
         v-on:toggleItem = "toggleOneItem"></TodoList>
@@ -16,14 +18,14 @@ import TodoList from './components/TodoList.vue'
 import TodoFooter from './components/TodoFooter.vue'
 
 export default {
-  created(){
-    if(localStorage.length > 0 ){
-      for ( let i = 0; i < localStorage.length; i ++){
-        console.log(JSON.parse(localStorage.getItem(localStorage.key(i))))
-        this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
-      }
-    }
-  },
+  // created(){
+  //   if(localStorage.length > 0 ){
+  //     for ( let i = 0; i < localStorage.length; i ++){
+  //       console.log(JSON.parse(localStorage.getItem(localStorage.key(i))))
+  //       this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+  //     }
+  //   }
+  // },
   data(){
     return {
       todoItems : []
@@ -31,14 +33,14 @@ export default {
   },
   methods : {
     // ES6문법 - 향상된 객체 리터럴 문법
-     addOneItem(todoItem){
-      const obj = {completed : false, item : todoItem}
-      console.log(todoItem)
-      // 저장하는 로직
-      // localStorage.setItem(this.newTodoItem, obj)
-      localStorage.setItem(todoItem, JSON.stringify(obj))
-      this.todoItems.push(obj)
-    },
+    //  addOneItem(todoItem){
+    //   const obj = {completed : false, item : todoItem}
+    //   console.log(todoItem)
+    //   // 저장하는 로직
+    //   // localStorage.setItem(this.newTodoItem, obj)
+    //   localStorage.setItem(todoItem, JSON.stringify(obj))
+    //   this.todoItems.push(obj)
+    // },
     removeOneItem(todoItem, index){
       console.log('삭제 데이터' + todoItem)
       localStorage.removeItem(todoItem.item);
@@ -60,10 +62,10 @@ export default {
   },
   components : {
     // 컴포넌트 태그명 : 컴포넌트 내용
-    'TodoHeader' : TodoHeader,
-    'TodoInput' : TodoInput,
-    'TodoList' : TodoList,
-    'TodoFooter' : TodoFooter
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter
   }
 }
 </script>

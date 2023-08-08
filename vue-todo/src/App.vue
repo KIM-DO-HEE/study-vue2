@@ -11,7 +11,7 @@
         v-on:removeItem = "removeOneItem"
         v-on:toggleItem = "toggleOneItem"></TodoList>] -->
       <!-- <TodoList v-bind:propsdata = "todoItems"></TodoList> -->
-      <!-- <TodoFooter v-on:clearAll = "clearAllItem"></TodoFooter> -->
+      <!-- <TodoFooter v-on:clearAll = "clearAllItem"></TodoFooter> -->3
   </div>
 </template>
 

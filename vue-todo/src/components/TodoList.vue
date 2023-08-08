@@ -2,11 +2,11 @@
   <div>
      <transition-group name="list" tag="ul">
     <!-- <ul> -->
-      <li v-for="(todoItem, index) in this.$store.state.todoItems" v-bind:key="todoItem.item" class="shadow">
+      <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
         <i class="fas fa-check checkBtn" v-bind:class="{checkBtnCompleted : todoItem.completed}"
-            v-on:click="toggleComplete(todoItem, index)"></i>
+            v-on:click="toggleComplete({ todoItem, index })"></i>
         <span v-bind:class="{textCompleted : todoItem.completed}"> {{ todoItem.item }}</span>
-        <span class="removeBtn" v-on:click="removeTodo(todoItem, index)">
+        <span class="removeBtn" v-on:click="removeTodo({ todoItem, index })">
           <i class="fas fa-trash-alt"></i>
         </span>
       </li>
@@ -18,20 +18,33 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default { 
   // props : ['propsdata'], store를 사용하기 때문에 props는 사용 X
   methods : {
-    removeTodo(todoItem, index){
-      // this.$emit('removeItem', todoItem, index)
-      // console.log(todoItem, index)
-      // console.log('인덱스' + index)
-      this.$store.commit('removeOneItem', { todoItem, index }) // 파라미터도 ES6 축약형으로 쓰임 => { todoItem : todoItem , index : index} 
-    },
-    toggleComplete(todoItem, index){
-      // this.$emit('toggleItem', todoItem, index)
-      console.log('인덱스' + index)
-      this.$store.commit('toggleOneItem', { todoItem, index })
-    }
+    ...mapMutations({
+      removeTodo : 'removeOneItem', // removeTodo 호출할 때 사용하는 인자를 암묵적으로 전달함
+      toggleComplete : 'toggleOneItem'
+    }),
+
+    // removeTodo(todoItem, index){
+    //   // this.$emit('removeItem', todoItem, index)
+    //   // console.log(todoItem, index)
+    //   // console.log('인덱스' + index)
+    //   this.$store.commit('removeOneItem', { todoItem, index }) // 파라미터도 ES6 축약형으로 쓰임 => { todoItem : todoItem , index : index} 
+    // },
+    // toggleComplete(todoItem, index){
+    //   // this.$emit('toggleItem', todoItem, index)
+    //   console.log('인덱스' + index)
+    //   this.$store.commit('toggleOneItem', { todoItem, index })
+    // }
+  },
+  computed : {
+    // todoItems(){
+    //   return this.$store.getters.storedTodoItems
+    // }
+    ...mapGetters(['storedTodoItems'])
   }
 
 }

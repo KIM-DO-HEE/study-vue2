@@ -1,13 +1,17 @@
 <template>
   <div id="app">
       <TodoHeader></TodoHeader>
+      <TodoInput></TodoInput>
+      <TodoList></TodoList>
+      <TodoFooter></TodoFooter>
+      
       <!-- event 발생하고 받는 부분은 store와 TodoInput과 연관있다 -->
       <!-- <TodoInput v-on:addTodoItem = "addOneItem"></TodoInput> -->
-      <TodoInput></TodoInput>
-      <TodoList v-bind:propsdata = "todoItems"
+      <!-- <TodoList v-bind:propsdata = "todoItems"
         v-on:removeItem = "removeOneItem"
-        v-on:toggleItem = "toggleOneItem"></TodoList>
-      <TodoFooter v-on:clearAll = "clearAllItem"></TodoFooter>
+        v-on:toggleItem = "toggleOneItem"></TodoList>] -->
+      <!-- <TodoList v-bind:propsdata = "todoItems"></TodoList> -->
+      <!-- <TodoFooter v-on:clearAll = "clearAllItem"></TodoFooter> -->
   </div>
 </template>
 
@@ -26,11 +30,11 @@ export default {
   //     }
   //   }
   // },
-  data(){
-    return {
-      todoItems : []
-    }
-  },
+  // data(){
+  //   return {
+  //     todoItems : []
+  //   }
+  // },
   methods : {
     // ES6문법 - 향상된 객체 리터럴 문법
     //  addOneItem(todoItem){
@@ -41,24 +45,24 @@ export default {
     //   localStorage.setItem(todoItem, JSON.stringify(obj))
     //   this.todoItems.push(obj)
     // },
-    removeOneItem(todoItem, index){
-      console.log('삭제 데이터' + todoItem)
-      localStorage.removeItem(todoItem.item);
-      console.log('아이템' + todoItem.item)
-      this.todoItems.splice(index, 1);
-    },
-    toggleOneItem(todoItem, index){
-      console.log(todoItem)
-      // todoItem.completed = !todoItem.completed;
-      this.todoItems[index].completed = !this.todoItems[index].completed
-      // 로컬 스토리지 데이터 갱신
-      localStorage.removeItem(todoItem.item)
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
-    },
-    clearAllItem(){
-      localStorage.clear()
-      this.todoItems = []
-    }
+    // removeOneItem(todoItem, index){
+    //   console.log('삭제 데이터' + todoItem)
+    //   localStorage.removeItem(todoItem.item);
+    //   console.log('아이템' + todoItem.item)
+    //   this.todoItems.splice(index, 1);
+    // },
+    // toggleOneItem(todoItem, index){
+    //   console.log(todoItem)
+    //   // todoItem.completed = !todoItem.completed;
+    //   this.todoItems[index].completed = !this.todoItems[index].completed
+    //   // 로컬 스토리지 데이터 갱신
+    //   localStorage.removeItem(todoItem.item)
+    //   localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+    // },
+    // clearAllItem(){
+    //   localStorage.clear()
+    //   this.todoItems = []
+    // }
   },
   components : {
     // 컴포넌트 태그명 : 컴포넌트 내용

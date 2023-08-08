@@ -22,10 +22,15 @@ export default {
   // props : ['propsdata'], store를 사용하기 때문에 props는 사용 X
   methods : {
     removeTodo(todoItem, index){
-      this.$emit('removeItem', todoItem, index)
+      // this.$emit('removeItem', todoItem, index)
+      // console.log(todoItem, index)
+      // console.log('인덱스' + index)
+      this.$store.commit('removeOneItem', { todoItem, index }) // 파라미터도 ES6 축약형으로 쓰임 => { todoItem : todoItem , index : index} 
     },
     toggleComplete(todoItem, index){
-      this.$emit('toggleItem', todoItem, index)
+      // this.$emit('toggleItem', todoItem, index)
+      console.log('인덱스' + index)
+      this.$store.commit('toggleOneItem', { todoItem, index })
     }
   }
 

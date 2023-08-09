@@ -14,13 +14,13 @@ export default {
         
     },
     created(){
-        var vm = this;
+        // var vm = this;
         fetchNewsList()
-        .then(function(response) {
+        .then(response => {
             console.log('응답'+response)
-            vm.users = response.data
+            this.users = response.data
         })
-        .catch(function(error){
+        .catch(error => {
             console.log(error)
         })
     }
